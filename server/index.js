@@ -11,8 +11,9 @@ import PartidoRoutes from "./routes/PartidoRoutes.js";
 import OrdenDeMantenimientoRoutes from "./routes/OrdenDeMantenimientoRoutes.js"
 
 const app = express();
+app.use(express.json());
 dotenv.config(); //usar env vars
-const port = process.env.port || 8000
+const port = process.env.port || 3000
 
 try {
     await sequelize.authenticate().then(() =>  console.log('DB Connected'));

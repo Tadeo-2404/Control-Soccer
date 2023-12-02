@@ -14,7 +14,7 @@ Empleado.init({
         allowNull: false
     },
     tipo: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false
     },
     telefono: {
@@ -22,7 +22,7 @@ Empleado.init({
         allowNull: false
     },
     correo: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false
     },
     direccion: {
