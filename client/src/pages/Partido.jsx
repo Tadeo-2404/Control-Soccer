@@ -1,7 +1,12 @@
+import AgregarPartido from "../components/AgregarPartido"
+import MostrarPartido from "../components/MostrarPartido"
 
 const Partido = () => {
   return (
-    <div>Partido</div>
+    <div>
+      <AgregarPartido/>
+      <MostrarPartido/>
+    </div>
   )
 }
 

@@ -1,7 +1,11 @@
-
+import AgregarCobro from "../components/AgregarCobro"
+import MostrarCobro from "../components/MostrarCobro"
 const Cobro = () => {
   return (
-    <div>Cobro</div>
+    <div>
+      <AgregarCobro/>
+      <MostrarCobro/>
+    </div>
   )
 }
 

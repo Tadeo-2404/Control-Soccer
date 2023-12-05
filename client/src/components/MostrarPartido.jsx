@@ -37,3 +37,5 @@ const MostrarPartido = () => {
     </div>
     );
 }
+
+export default MostrarPartido
