@@ -5,8 +5,8 @@
     font-family: "Poppins", sans-serif;
 }
 
-body {
-    display: flex;
+.template_layout_container {
+        display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -137,4 +137,17 @@ body {
 
 .register-link p a:hover {
     text-decoration: underline;
+}
+
+.navbar_container {
+    background-color: rgb(247, 0, 231);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar_link {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
 }
