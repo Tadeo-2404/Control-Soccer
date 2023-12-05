@@ -3,7 +3,7 @@ import MostrarPartido from "../components/MostrarPartido"
 
 const Partido = () => {
   return (
-    <div>
+    <div style={{display: 'flex'}}>
       <AgregarPartido/>
       <MostrarPartido/>
     </div>

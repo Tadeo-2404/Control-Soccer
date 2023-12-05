@@ -2,7 +2,7 @@ import AgregarEmpleado from "../components/AgregarEmpleado"
 import MostrarEmpleado from "../components/MostrarEmpleado"
 const Empleado = () => {
   return (
-    <div>
+    <div style={{display: 'flex'}}>
       <AgregarEmpleado/>
       <MostrarEmpleado/>
     </div>
