@@ -6,17 +6,17 @@ const NavBar = () => {
         <Link to={"/"} className="navbar_link">
           Inicio
         </Link>
-        <Link to={"/agregar-partido"} className="navbar_link">
-          Agregar Partido
+        <Link to={"/partido"} className="navbar_link">
+           Partido
         </Link>
-        <Link to={"/agregar-cobro"} className="navbar_link">
-          Agregar Cobro
+        <Link to={"/cobro"} className="navbar_link">
+           Cobro
         </Link>
-        <Link to={"/agregar-empleado"} className="navbar_link">
-          Agregar Empleado
+        <Link to={"/empleado"} className="navbar_link">
+           Empleado
         </Link>
-        <Link to={"/agregar-Jugador"} className="navbar_link">
-          Agregar Jugador
+        <Link to={"/jugador"} className="navbar_link">
+           Jugador
         </Link>
     </div>
   )
