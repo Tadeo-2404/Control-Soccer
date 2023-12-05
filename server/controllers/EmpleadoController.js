@@ -79,7 +79,8 @@ const editar_empleado = async (req, res) => {
       return res.status(200).json({ msg: "Cuenta editada exitosamente" });
     } catch (error) {
       console.log(error);
-    }};
+  }
+};
 
 export {
     crear_empleado,
