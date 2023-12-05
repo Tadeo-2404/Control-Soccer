@@ -9,11 +9,11 @@ Cobro.init({
         primaryKey: true,
         autoIncrement: true
     },
-    id_empleado: {
+    id_empleado: { //quien registrar cobro
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    id_deudor: {
+    id_deudor: { //a quein se le cobra
         type: DataTypes.INTEGER,
         allowNull: false
     },
@@ -21,7 +21,7 @@ Cobro.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    id_cobro_concepto: {
+    id_cobro_concepto: { //id concepto
         type: DataTypes.INTEGER,
         allowNull: false
     },
