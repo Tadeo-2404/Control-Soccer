@@ -1,39 +1,57 @@
-import React from 'react'
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const MostrarEmpleado = () => {
+  const [empleado, setEmpleado] = useState([]);
+
+  const obtener_empleado = async () => {
+    const url = "http://localhost:3000/empleado/buscar";
+    const empleado = await axios.get(url);
+    setEmpleado(empleado.data);
+  };
+
+  useEffect(() => {
+    obtener_empleado();
+  }, []);
+
   return (
     <div>
-      <form action="">
-        <div class="wrapper">
-            <h1>Busqueda de Empleado</h1>
-            <div class="search">
-                <input type="search" placeholder="Buscar nombre o id"/>
-                <button type="submit" class="btnn">Editar</button>
-            </div>
-            <div class="input-box">
-                <input type="text" placeholder="Nombre Completo" required/>
-            </div>
-            <div>
-                <select name="Tipo" id="Tipo" class="box">
-                    <option value="administrativo" class="vl">Administrativo</option>
-                    <option value="mantenimiento" class="vl">Mantenimiento</option>
-                </select>
-            </div>
-            <div class="input-box">
-                <input type="text" placeholder="Telefono" required/>
-            </div>
-            <div class="input-box">
-                <input type="email" placeholder="E-mail" required/>
-            </div>
-            <div class="input-box">
-                <input type="text" placeholder="Direccion" required/>
-            </div>
-
-            <button type="submit" class="btn">Registrar</button>
+      {empleado.length > 0 ? (
+        empleado.map((empleado) => (
+          <div key={empleado.id} className="container_partido">
+            <p>
+              <span>nombre: </span>
+              {empleado.nombre}
+            </p>
+            <p>
+              <span>tipo: </span>
+              {empleado.tipo}
+            </p>
+            <p>
+              <span>posicion: </span>
+              {empleado.posicion}
+            </p>
+            <p>
+              <span>telefono: </span>
+              {empleado.telefono}
+            </p>
+            <p>
+              <span>correo: </span>
+              {empleado.correo}
+            </p>
+            <p>
+              <span>direccion: </span>
+              {empleado.direccion}
+            </p>
+          </div>
+        ))
+      ) : (
+        <div>
+          <p>no hay empleados que mostrar</p>
         </div>
-    </form>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default MostrarEmpleado
+export default MostrarEmpleado;
