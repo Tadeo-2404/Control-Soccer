@@ -9,9 +9,11 @@ import GastoRoutes from "./routes/GastoRoutes.js";
 import MaterialesRoutes from "./routes/MaterialesRoutes.js";
 import PartidoRoutes from "./routes/PartidoRoutes.js";
 import OrdenDeMantenimientoRoutes from "./routes/OrdenDeMantenimientoRoutes.js"
+import cors from "cors";
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 dotenv.config(); //usar env vars
 const port = process.env.port || 3000
 

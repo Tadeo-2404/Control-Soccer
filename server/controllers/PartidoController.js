@@ -1,20 +1,36 @@
 import Partido from "../models/PartidoModel.js";
+import Convocados from "../models/ConvocadosMode.js";
 import { Op } from 'sequelize';
 
 const crear_partido = async (req, res) => {
-    const { categoria, fecha, hora, rival, sede, id_convocados } = req.body;
+  const { categoria, fecha, hora, rival, sede, id_convocados } = req.body;
 
-    if(!categoria || !fecha || !hora || !rival || !sede || !id_convocados) {
-        return res.status(400).json({msg: "Todos los campos son obligatorios"});
-    }
+  if (!categoria || !fecha || !hora || !rival || !sede || !id_convocados) {
+      return res.status(400).json({ msg: "Todos los campos son obligatorios" });
+  }
 
-    try {
-        const response = await Partido.create(req.body);
-        res.status(400).json(response)
-    } catch (error) {
-        console.log(error)
-    }
-}
+  try {
+      // Create partido
+      const partido = await Partido.create({ categoria, fecha, hora, rival, sede, id_convocados: 1 });
+
+      // Create Convocados records
+      const convocadosPromises = id_convocados.map(async (id) => {
+          const convocado = await Convocados.create({ id_partido: partido.id, id_jugador: id });
+          return convocado;
+      });
+
+      // Wait for all Convocados records to be created
+      const convocados = await Promise.all(convocadosPromises);
+
+      await partido.update({ id_convocados: partido.id });
+
+      res.status(201).json({ msg: "Partido creado exitosamente", partido, convocados });
+  } catch (error) {
+      console.log(error);
+      res.status(500).json({ msg: "Error interno del servidor" });
+  }
+};
+
 
 const mostrar_partido = async (req, res) => {
     const { limite, id, categoria, rival, sede } = req.query; //leer parametros

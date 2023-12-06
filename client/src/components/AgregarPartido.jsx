@@ -20,15 +20,17 @@ const AgregarPartido = () => {
       hora,
       rival,
       sede,
-      playersArr
+      id_convocados: playersArr
     };
 
+    console.log(data)
+ 
     try {
       const url = "http://localhost:3000/partido/crear";
       const response = await axios.post(url, data);
-      console.log(response)
+      console.log("response", response)
     } catch (error) {
-      console.log(error);
+      console.log("error", error);
     }
   };
 
