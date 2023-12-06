@@ -21,7 +21,7 @@ try {
 } catch (error) {
     console.log(error)
 } 
-
+ 
 app.use('/jugador', JugadorRoutes);
 app.use('/empleado', EmpleadoRoutes);
 app.use('/cobro', CobroRoutes);

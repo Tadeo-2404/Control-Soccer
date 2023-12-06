@@ -151,3 +151,18 @@
     text-decoration: none;
     text-transform: uppercase;
 }
+
+.player_show_container {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+    background-color: white;
+    color: black;
+}
+
+.player_show_p {
+    display: flex;
+    gap: 2px;
+}
