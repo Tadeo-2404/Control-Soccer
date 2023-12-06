@@ -1,42 +1,53 @@
-import React from 'react'
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const MostrarJugador = () => {
+  const [jugador, setjugador] = useState([]);
+
+  const obtener_jugador = async () => {
+    const url = "http://localhost:3000/jugador/buscar";
+    const jugador = await axios.get(url);
+    setjugador(jugador.data);
+  };
+
+  useEffect(() => {
+    obtener_jugador();
+  }, []);
+
   return (
     <div>
-      <form action="">
-        <div class="wrapper">
-            <h1>Busqueda de Jugador</h1>
-            <div class="search">
-                <input type="search" placeholder="Buscar nombre o id"/>
-                <button type="submit" class="btnn">Editar</button>
-            </div>
-            <div class="input-box">
-                <input type="text" placeholder="Nombre Completo" required/>
-            </div>
-            <div class="input-box">
-                <input type="date" placeholder="Fecha nacimiento" required/>
-            </div>
-            <div class="input-box">
-                <input type="email" placeholder="E-mail" required/>
-            </div>
-            <div class="input-box">
-                <input type="text" placeholder="Telefono"/>
-            </div>
-            <div class="input-box">
-                <input type="text" placeholder="Posicion" required/>
-            </div>
-            <div class="input-box">
-                <input type="number" placeholder="Numero Camisa"/>
-            </div>
-            <div class="input-box">
-                <input type="text" placeholder="Categoria"/>
-            </div>
-
-            <button type="submit" class="btn">Registrar</button>
+      {jugador.length > 0 ? (
+        jugador.map((jugador) => (
+          <div key={jugador.id} className="container_partido">
+            <p>
+              <span>nombre: </span>
+              {jugador.nombre}
+            </p>
+            <p>
+              <span>fecha: </span>
+              {jugador.fecha_nacimiento}
+            </p>
+            <p>
+              <span>posicion: </span>
+              {jugador.posicion}
+            </p>
+            <p>
+              <span>categoria: </span>
+              {jugador.categoria}
+            </p>
+            <p>
+              <span>numero: </span>
+              {jugador.numero}
+            </p>
+          </div>
+        ))
+      ) : (
+        <div>
+          <p>no hay jugadorres que mostrar</p>
         </div>
-    </form>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default MostrarJugador
+export default MostrarJugador;
