@@ -2,7 +2,6 @@ import {useState} from 'react'
 import axios from "axios"
 
 const AgregarCobro = () => {
-    const [nombre_conc, setNombre_conc] = useState("")
     const [id_deudor, setId_deudor] = useState("");
     const [telefono, setTelefono] = useState("");
     const [fecha, setFecha] = useState("");
@@ -14,7 +13,6 @@ const AgregarCobro = () => {
       event.preventDefault();
   
       const data = {
-        nombre_conc,
         id_deudor,
         telefono,
         fecha,
