@@ -1,23 +1,46 @@
 import React from 'react'
 
 const MostrarCobro = () => {
+  const [cobro, setCobro] = useState([]);
+
+  const obtener_cobro = async () => {
+    const url = "http://localhost:3000/cobro/buscar";
+    const cobro = await axios.get(url);
+    setCobro(cobro.data);
+  };
+
+  useEffect(() => {
+    obtener_cobro();
+  }, []);
+
   return (
     <div>
-      <form action="">
-        <div class="wrapper">
-            <h1>Busqueda de Cobro</h1>
-            <div class="search">
-                <input type="search" placeholder="Buscar nombre o id"/>
-                <button type="submit" class="btnn">Editar</button>
-            </div>
-            <div class="input-box">
-                <input type="text" placeholder="ID"/>
-            </div>
-            <div class="input-box">
-                <input type="text" placeholder="Conceptos"/>
-            </div>
+      {cobro.length > 0 ? (
+        cobro.map((cobro) => (
+          <div key={cobro.folio} className="container_partido">
+            <p>
+              <span>nombre: </span>
+              {cobro.folio}
+            </p>
+            <p>
+              <span>telefono: </span>
+              {cobro.telefono}
+            </p>
+            <p>
+              <span>Deudor: </span>
+              {cobro.id_deudor}
+            </p>
+            <p>
+              <span>Fecha: </span>
+              {cobro.fecha}
+            </p>
+          </div>
+        ))
+      ) : (
+        <div>
+          <p>no hay cobros que mostrar</p>
         </div>
-    </form>
+      )}
     </div>
   )
 }

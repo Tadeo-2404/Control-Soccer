@@ -2,8 +2,10 @@ import {useState} from 'react'
 import axios from "axios"
 
 const AgregarCobro = () => {
+    const [nombre_conc, setNombre_conc] = useState("")
     const [id_deudor, setId_deudor] = useState("");
     const [telefono, setTelefono] = useState("");
+    const [fecha, setFecha] = useState("");
     const [conceptos, setConceptos] = useState([]);
     const [showConceptos, setShowConceptos] = useState(false);
     let conceptosArr = [];
@@ -12,8 +14,10 @@ const AgregarCobro = () => {
       event.preventDefault();
   
       const data = {
+        nombre_conc,
         id_deudor,
         telefono,
+        fecha,
         conceptos: conceptosArr
       };
   
@@ -32,7 +36,7 @@ const AgregarCobro = () => {
       setConceptos[[]];
       conceptosArr = []
       try {
-        const url = `http://localhost:3000/cobro/buscar?folio=${input}`;
+        const url = `http://localhost:3000/cobro/buscar?nombre_conc=${input}`;
         const { data } = await axios.get(url);
         setConceptos(data);
         setShowConceptos(true);
@@ -43,7 +47,7 @@ const AgregarCobro = () => {
     };
   
     const hadleCategory = (input) => {
-      setConceptos(input);
+      setNombre_conc(input);
       getConceptos(input);
     };
     
@@ -70,6 +74,9 @@ const AgregarCobro = () => {
           <div>
             <select name="Conceptos" id="Conceptos" class="box"
             onChange={(event) => hadleCategory(event.target.value)}>
+              <option value="seleccionar" class="v1">
+                Seleccionar
+              </option>
               <option value="administrativo" class="vl">
                 Mensualidad
               </option>
@@ -78,7 +85,30 @@ const AgregarCobro = () => {
               </option>
             </select>
           </div>
-          <button type="submit" class="btn" onClick={() => handleSelectConceptos(conceptos.id)} >
+          <div>
+            {conceptos.length > 0 ? (
+              <div>
+                <h2>List de conceptos</h2>
+                {conceptos.map((conceptos) => (
+                  <div key={conceptos.id} className="conceptos_show_container">
+                    <p className="concepto_show_p">
+                      <span>Nombre:</span>
+                      {conceptos.id}
+                    </p>
+                    <p className="concepto_show_p">
+                      <span>$</span>
+                      {conceptos.precio}
+                    </p>
+                    <button onClick={() => handleSelectConceptos(conceptos.id)} type="button">Seleccionar</button>
+                  </div>
+                ))}
+              </div>
+            ) : null}
+          </div>
+          <div class="input-box">
+            <input type="date" placeholder="Fecha" required onChange={(event) => setFecha(event.target.value)}/>
+          </div>
+          <button type="submit" class="btn">
             Registrar
           </button>
         </form>
